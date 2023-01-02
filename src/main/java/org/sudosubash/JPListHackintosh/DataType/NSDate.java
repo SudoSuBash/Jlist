@@ -4,7 +4,7 @@
  * This class called NSDate corresponds Date type in Plist.
  */
 
-package org.sudosubash.PlistParser.DataType;
+package org.sudosubash.JPListHackintosh.DataType;
 
 import java.util.Date;
 

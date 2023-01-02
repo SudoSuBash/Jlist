@@ -5,7 +5,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.sudosubash.PlistParser.DataType;
+package org.sudosubash.JPListHackintosh.DataType;
 
 public class NSRoot extends NSDict {
 

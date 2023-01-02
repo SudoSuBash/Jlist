@@ -17,13 +17,13 @@
  * 2.Convert some SPECIAL JSON to Plist
  */
 
-package org.sudosubash.PlistParser;
+package org.sudosubash.JPListHackintosh;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.sudosubash.PlistParser.DataType.*;
+import org.sudosubash.JPListHackintosh.DataType.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -82,30 +82,21 @@ public class PlistReader {
     }
 
     private static void parseNode(NSCollection parent,String key,Element value) throws PlistNotVaildException {
-        if (value.getName().equalsIgnoreCase("integer")) {
-            NSInt res = new NSInt(key,Long.parseLong(value.getStringValue()),parent);
-            parent.add(res);
-        } else if (value.getName().equalsIgnoreCase("string")) {
-            NSString res = new NSString(key,value.getStringValue(),parent);
-            parent.add(res);
-        } else if (value.getName().equalsIgnoreCase("data")) {
-            NSData res = new NSData(key,value.getStringValue(),parent);
-            parent.add(res);
-        } else if (value.getName().equalsIgnoreCase("dict")) {
+        if (value.getName().equalsIgnoreCase("integer")) new NSInt(key,Long.parseLong(value.getStringValue()),parent);
+        else if (value.getName().equalsIgnoreCase("string")) new NSString(key,value.getStringValue(),parent);
+        else if (value.getName().equalsIgnoreCase("data")) new NSData(key,value.getStringValue(),parent);
+        else if (value.getName().equalsIgnoreCase("array")) parseArray(parent,value,key);
+        else if (value.getName().equalsIgnoreCase("dict")) {
             NSDict res = new NSDict(key,parent);
             parseDict(res,value);
-            parent.add(res);
-        } else if (value.getName().equalsIgnoreCase("array")) {
-            NSArray res = parseArray(parent,value,key);
-            parent.add(res);
-        } else if (value.getName().equalsIgnoreCase("true")
+        }
+        else if (value.getName().equalsIgnoreCase("true")
                 || value.getName().equalsIgnoreCase("false")) {
             boolean val;
             if(value.getName().equalsIgnoreCase("true")) val = true;
             else if(value.getName().equalsIgnoreCase("false")) val = false;
             else throw new PlistNotVaildException("The key "+key+"'s value is not right,requires a true/false value!'");
-            NSBoolean res = new NSBoolean(key,val,parent);
-            parent.add(res);
+            new NSBoolean(key,val,parent);
         } else if (value.getName().equalsIgnoreCase("date")) {
         } else throw new PlistNotVaildException("Unknown type "+
         value.getName()+"for key:"+key);

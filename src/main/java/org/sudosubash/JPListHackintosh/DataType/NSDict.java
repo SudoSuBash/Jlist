@@ -4,7 +4,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.sudosubash.PlistParser.DataType;
+package org.sudosubash.JPListHackintosh.DataType;
 
 
 public class NSDict extends NSCollection {
@@ -12,4 +12,6 @@ public class NSDict extends NSCollection {
     public NSDict(String key,NSCollection parent) {
         super("dict",key,parent);
     }
+
+
 }

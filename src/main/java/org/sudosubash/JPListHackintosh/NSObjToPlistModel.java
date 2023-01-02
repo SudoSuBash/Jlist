@@ -2,9 +2,9 @@
  * This class is used to convert the DOM Tree to the plist file.
  */
 
-package org.sudosubash.PlistParser;
+package org.sudosubash.JPListHackintosh;
 
-import org.sudosubash.PlistParser.DataType.*;
+import org.sudosubash.JPListHackintosh.DataType.*;
 
 public class NSObjToPlistModel implements INSObjToPlist {
 
@@ -13,6 +13,9 @@ public class NSObjToPlistModel implements INSObjToPlist {
             "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n" ;
     private StringBuilder text;
 
+    public NSObjToPlistModel() {
+        this("UTF-8");
+    }
     public NSObjToPlistModel(String encoding) {
         head = String.format(head,encoding);
         this.text = new StringBuilder(head);

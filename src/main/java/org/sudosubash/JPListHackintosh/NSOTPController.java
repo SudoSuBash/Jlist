@@ -6,11 +6,11 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.sudosubash.PlistParser;
+package org.sudosubash.JPListHackintosh;
 
-import org.sudosubash.PlistParser.DataType.NSCollection;
-import org.sudosubash.PlistParser.DataType.NSObject;
-import org.sudosubash.PlistParser.DataType.NSRoot;
+import org.sudosubash.JPListHackintosh.DataType.NSCollection;
+import org.sudosubash.JPListHackintosh.DataType.NSObject;
+import org.sudosubash.JPListHackintosh.DataType.NSRoot;
 
 public class NSOTPController {
     private NSRoot object;

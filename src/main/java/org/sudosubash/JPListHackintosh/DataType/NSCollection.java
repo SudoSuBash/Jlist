@@ -5,7 +5,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.sudosubash.PlistParser.DataType;
+package org.sudosubash.JPListHackintosh.DataType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,8 +21,8 @@ public class NSCollection extends NSObject implements Iterable<NSObject> {
         this.child = new ArrayList<>();
     }
 
-    public void add(NSObject child) {
-        this.child.add(child);
+    public void add(NSObject dict) {
+        this.child.add(dict);
     }
 
     public NSObject getChildIndex(int index) {

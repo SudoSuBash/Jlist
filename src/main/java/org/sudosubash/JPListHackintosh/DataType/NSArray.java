@@ -4,9 +4,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.sudosubash.PlistParser.DataType;
-
-import java.util.List;
+package org.sudosubash.JPListHackintosh.DataType;
 
 public class NSArray extends NSCollection {
     public NSArray(String key,NSCollection parent) {
@@ -15,14 +13,6 @@ public class NSArray extends NSCollection {
 
     public String getKey() {
         return key;
-    }
-
-    public List<NSObject> getChild() {
-        return child;
-    }
-
-    public void addChild(NSDict dict) {
-        this.child.add(dict);
     }
 
 

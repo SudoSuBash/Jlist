@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JList">
+    <output-path>$PROJECT_DIR$/out/artifacts/JList</output-path>
+    <root id="archive" name="JList.jar">
+      <element id="module-output" name="Plist Parser" />
+      <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+      <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+    </root>
+  </artifact>
+</component>

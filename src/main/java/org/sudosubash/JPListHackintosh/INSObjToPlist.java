@@ -1,6 +1,6 @@
-package org.sudosubash.PlistParser;
+package org.sudosubash.JPListHackintosh;
 
-import org.sudosubash.PlistParser.DataType.NSObject;
+import org.sudosubash.JPListHackintosh.DataType.NSObject;
 
 
 public interface INSObjToPlist {

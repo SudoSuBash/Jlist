@@ -4,7 +4,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.sudosubash.PlistParser.DataType;
+package org.sudosubash.JPListHackintosh.DataType;
 
 public class NSObject {
     protected NSCollection parentDict;
@@ -21,8 +21,10 @@ public class NSObject {
 
     public NSObject(String type, String key, NSCollection parent) {
         this.type = type;
-        this.key = key;
+        if(parent instanceof NSArray) this.key = null;
+        else this.key = key;
         this.parentDict = parent;
+        if(parent != null) parent.add(this);
     }
 
     public NSCollection getParentDict() {

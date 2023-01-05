@@ -6,7 +6,10 @@
 
 package org.dragonstudio.JPlist.DataType;
 
-public class NSObject<T> {
+import java.io.Serializable;
+
+public class NSObject<T>
+    implements Serializable {
     protected NSCollection parentDict;
     protected String key;
     protected String type;

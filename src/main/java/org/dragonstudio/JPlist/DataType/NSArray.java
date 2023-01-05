@@ -7,13 +7,12 @@
 package org.dragonstudio.JPlist.DataType;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class NSArray extends NSObject<List<NSObject>>
-        implements NSCollection,Cloneable, Serializable, Iterable<NSObject> {
+        implements NSCollection,Cloneable, Iterable<NSObject> {
 
     public NSArray(String key, NSCollection parent) {
         super("array",key,parent);

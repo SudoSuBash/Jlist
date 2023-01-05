@@ -6,13 +6,12 @@
 
 package org.dragonstudio.JPlist.DataType;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class NSDict extends NSObject<Map<Integer,NSObject>>
-    implements NSCollection,Cloneable,Serializable,Iterable<NSObject> {
+    implements NSCollection,Cloneable,Iterable<NSObject> {
     public NSDict(String key, NSCollection parent) {
         super("dict", key, parent);
         super.value = new HashMap<>();

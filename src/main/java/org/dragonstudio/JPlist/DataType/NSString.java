@@ -8,7 +8,7 @@ package org.dragonstudio.JPlist.DataType;
 
 public class NSString extends NSObject<String> {
 
-    public NSString(String key, String value ,NSCollection parent) {
+    public NSString(String key, String value , NSCollection parent) {
         super("string",key,parent);
         super.value = String.valueOf(value);
     }

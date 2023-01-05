@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class NSDate extends NSObject<Date> {
 
-    public NSDate(String key,NSCollection parent) {
+    public NSDate(String key, NSCollection parent) {
         super("date",key,parent);
         this.value = null;
     }

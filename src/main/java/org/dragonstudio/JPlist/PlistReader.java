@@ -52,9 +52,10 @@ public class PlistReader {
         return newDict;
     }
 
-    private static NSDict parseDict(NSDict dict,Element element) throws PlistNotValidException {
+    private static NSDict parseDict(NSDict dict, Element element) throws PlistNotValidException {
         int length = element.elements().size();
         for (int cur = 0; cur < length; cur+=2) {
+
             Element son = (Element) element.elements().get(cur),next;
             if (son.getName().equalsIgnoreCase("key")) {
                 if (cur+1 > length) {
@@ -72,26 +73,32 @@ public class PlistReader {
         return dict;
     }
 
-    private static NSArray parseArray(NSCollection parent, Element arrayVal, String key) throws PlistNotValidException {
+    private static NSDict parseArray(NSCollection parent, Element arrayVal, String key) throws PlistNotValidException {
         int length = arrayVal.elements().size();
-        NSArray array = new NSArray(key,parent);
+        NSDict array = new NSDict(key,parent);
         for(int cur=0;cur<length;cur++) {
             parseNode(array,null,(Element) arrayVal.elements().get(cur));
         }
         return array;
     }
 
-    private static void parseNode(NSCollection parent,String key,Element value) throws PlistNotValidException {
+    private static void parseNode(NSCollection parent, String key, Element value) throws PlistNotValidException {
         if (value.getName().equalsIgnoreCase("integer")) {
             if(value.getStringValue().contains(".")) throw new PlistNotValidException("Key");
             new NSInteger(key,Long.parseLong(value.getStringValue()),parent);
         }
-        else if (value.getName().equalsIgnoreCase("string")) new NSString(key,value.getStringValue(),parent);
-        else if (value.getName().equalsIgnoreCase("data")) new NSData(key,parent).initWithEncodedString(value.getStringValue());
-        else if (value.getName().equalsIgnoreCase("real")) new NSNumber(key,Double.valueOf(value.getStringValue()),parent);
-        else if (value.getName().equalsIgnoreCase("array")) parseArray(parent,value,key);
-        else if (value.getName().equalsIgnoreCase("date")) new NSDate(key,parent).initWithDateFString(value.getStringValue());
+        else if (value.getName().equalsIgnoreCase("string"))
+            new NSString(key,value.getStringValue(),parent);
+        else if (value.getName().equalsIgnoreCase("data"))
+            new NSData(key,parent).initWithEncodedString(value.getStringValue());
+        else if (value.getName().equalsIgnoreCase("real"))
+            new NSNumber(key,Double.valueOf(value.getStringValue()),parent);
+        else if (value.getName().equalsIgnoreCase("array"))
+            parseArray(parent,value,key);
+        else if (value.getName().equalsIgnoreCase("date"))
+            new NSDate(key,parent).initWithDateFString(value.getStringValue());
         else if (value.getName().equalsIgnoreCase("dict")) {
+
             NSDict res = new NSDict(key,parent);
             parseDict(res,value);
         }

@@ -1,6 +1,5 @@
 /**
- * @NotFinished the FLOAT & DOUBLE NUMBER will NOT be fetched into DOM.
- * This class called NSInt corresponds INT type(NOT FLOAT / DOUBLE) in Plist.
+ * This class called NSNumber corresponds REAL in Plist.
  *
  * @author SYSTEM-QEMU-PPC
  */

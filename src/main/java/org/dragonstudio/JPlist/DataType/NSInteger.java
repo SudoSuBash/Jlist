@@ -1,5 +1,4 @@
 /**
- * @NotFinished the FLOAT & DOUBLE NUMBER will NOT be fetched into DOM.
  * This class called NSInt corresponds INT type(NOT FLOAT / DOUBLE) in Plist.
  *
  * @author SYSTEM-QEMU-PPC

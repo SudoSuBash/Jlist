@@ -33,18 +33,19 @@ public class NSData extends NSObject<String> {
      * data.initWithDecodedString(string); //If decoded
      * @param key
      * @param parent
-     * @throws PlistNotValidException
      */
 
-    public NSData(String key, NSCollection parent) throws PlistNotValidException {
+    public NSData(String key, NSCollection parent) {
         super("data",key,parent);
     }
 
     public void initWithEncodedString(String string) throws PlistNotValidException {
+        if(string.isEmpty() || string.length() == 0) throw new PlistNotValidException("Cannot encode an empty string!");
         this.value = this.DecodeString(string);
     }
 
     public void initWithDecodedString(String string) throws PlistNotValidException {
+        if(string.isEmpty() || string.length() == 0) throw new PlistNotValidException("Cannot decode an empty string!");
         EncodeString(string); // check if can encode
         this.value = string;
     }

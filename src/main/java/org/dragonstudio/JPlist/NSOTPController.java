@@ -1,7 +1,7 @@
 /**
  * Usage:
  * NSOTPController eg = new NSOTPController(YourNSRoot);
- * eg.convertToString() // convert the DOM Tree to a String variable
+ * eg.convertToString() // convert the NSRoot DOM Tree to a String variable
  *
  * @author SYSTEM-QEMU-PPC
  */
@@ -9,8 +9,12 @@
 package org.dragonstudio.JPlist;
 
 import org.dragonstudio.JPlist.DataType.NSCollection;
+import org.dragonstudio.JPlist.DataType.NSDict;
 import org.dragonstudio.JPlist.DataType.NSObject;
 import org.dragonstudio.JPlist.DataType.NSRoot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NSOTPController {
     private NSRoot object;
@@ -35,7 +39,6 @@ public class NSOTPController {
     }
 
     private void parseObject(NSCollection nsCollection) throws PlistNotValidException {
-
         for(NSObject object1 : nsCollection) {
             model.Start(count,object1);
             if(object1 instanceof NSCollection) {

@@ -17,6 +17,11 @@ public class NSDict extends NSObject<Map<Integer,NSObject>>
         super.value = new HashMap<>();
     }
 
+    public NSDict() {
+        this(null,null);
+        super.parentDict = this;
+    }
+
     @Override
     public int size() {
         return super.value.size();

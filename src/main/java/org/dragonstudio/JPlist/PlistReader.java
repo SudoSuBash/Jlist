@@ -32,13 +32,16 @@ public class PlistReader {
 
     public static String SEPARATOR_LINE = System.getProperty("line.separator");
 
-    public static Element getRootElementFromXml(String path) throws IOException, DocumentException {
+    public static Element getRootElementFromXml(String path) throws IOException, DocumentException, PlistNotValidException {
         File file = new File(path);
-        if(!file.isFile() || !file.exists()) throw new IOException("File format error or not found!");
+        if (!file.isFile() || !file.exists()) throw new IOException("File format error or not found!");
         SAXReader reader = new SAXReader();
         Document dom = reader.read(file);
-        Element root = dom.getRootElement().element("dict");
-        return root;
+        if (dom.getRootElement().element("dict") != null) {
+            return dom.getRootElement().element("dict");
+        } else if (dom.getRootElement().element("array") != null) {
+            return dom.getRootElement().element("array");
+        } else throw new PlistNotValidException("Root node must be a collection type!");
     }
 
     /**
@@ -46,10 +49,16 @@ public class PlistReader {
      * @return An NSRoot Entity
      * @throws PlistNotValidException When the plist has some errors
      */
-    public static NSRoot convertToElement(Element element) throws PlistNotValidException {
-        NSRoot newDict = new NSRoot();
-        parseDict(newDict,element);
-        return newDict;
+    public static NSCollection convertToElement(Element element) throws PlistNotValidException {
+        NSCollection collection = null;
+        if(element.getName().equalsIgnoreCase("dict")) {
+            collection = new NSDict();
+            parseDict((NSDict) collection,element);
+        } else if (element.getName().equalsIgnoreCase("array")) {
+            collection = new NSArray();
+            parseArray((NSArray) collection, element);
+        }
+        return collection;
     }
 
     private static NSDict parseDict(NSDict dict, Element element) throws PlistNotValidException {
@@ -73,9 +82,8 @@ public class PlistReader {
         return dict;
     }
 
-    private static NSDict parseArray(NSCollection parent, Element arrayVal, String key) throws PlistNotValidException {
+    private static NSArray parseArray(NSArray array,Element arrayVal) throws PlistNotValidException {
         int length = arrayVal.elements().size();
-        NSDict array = new NSDict(key,parent);
         for(int cur=0;cur<length;cur++) {
             parseNode(array,null,(Element) arrayVal.elements().get(cur));
         }
@@ -93,14 +101,14 @@ public class PlistReader {
             new NSData(key,parent).initWithEncodedString(value.getStringValue());
         else if (value.getName().equalsIgnoreCase("real"))
             new NSNumber(key,Double.valueOf(value.getStringValue()),parent);
-        else if (value.getName().equalsIgnoreCase("array"))
-            parseArray(parent,value,key);
         else if (value.getName().equalsIgnoreCase("date"))
             new NSDate(key,parent).initWithDateFString(value.getStringValue());
         else if (value.getName().equalsIgnoreCase("dict")) {
-
             NSDict res = new NSDict(key,parent);
             parseDict(res,value);
+        } else if (value.getName().equalsIgnoreCase("array")) {
+            NSArray res = new NSArray(key,parent);
+            parseArray(res,value);
         }
         else if (value.getName().equalsIgnoreCase("true")
                 || value.getName().equalsIgnoreCase("false")) {
@@ -110,7 +118,6 @@ public class PlistReader {
             else throw new PlistNotValidException("The key "+key+"'s value is not right,requires a true/false value!'");
             new NSBoolean(key,val,parent);
         }
-        else throw new PlistNotValidException("Unknown type "+
-        value.getName()+"for key:"+key);
+        else throw new PlistNotValidException("Unknown type "+ value.getName()+"for key:"+key);
     }
 }

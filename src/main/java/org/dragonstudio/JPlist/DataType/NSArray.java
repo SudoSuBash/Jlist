@@ -19,6 +19,10 @@ public class NSArray extends NSObject<List<NSObject>>
         super.value = new ArrayList<>();
     }
 
+    public NSArray() {
+        this(null,null);
+        super.parentDict = this;
+    }
 
     @Override
     public int size() {

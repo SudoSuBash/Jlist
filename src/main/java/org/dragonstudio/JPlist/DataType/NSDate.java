@@ -20,9 +20,6 @@ public class NSDate extends NSObject<Date> {
         this.value = null;
     }
 
-    public void initWithDate(Date date) {
-        this.value = date;
-    }
 
     public void initWithDateFString(String date) throws PlistNotValidException {
         String correct = date.replace('T',' ')

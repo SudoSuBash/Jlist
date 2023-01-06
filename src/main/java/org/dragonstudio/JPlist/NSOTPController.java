@@ -9,31 +9,26 @@
 package org.dragonstudio.JPlist;
 
 import org.dragonstudio.JPlist.DataType.NSCollection;
-import org.dragonstudio.JPlist.DataType.NSDict;
 import org.dragonstudio.JPlist.DataType.NSObject;
-import org.dragonstudio.JPlist.DataType.NSRoot;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NSOTPController {
-    private NSRoot object;
+    private NSCollection object;
     private NSObjToPlistModel model;
     private int count = 2;
 
-    public NSOTPController(NSRoot nsRoot) {
+    public NSOTPController(NSCollection nsRoot) {
         this(nsRoot,"UTF-8");
     }
 
-    public NSOTPController(NSRoot nsRoot,String encode) {
+    public NSOTPController(NSCollection nsRoot,String encode) {
         this.object = nsRoot;
         this.model = new NSObjToPlistModel(encode);
     }
 
     public String convertToString() throws PlistNotValidException {
-        model.StartFile();
+        model.StartFile(object);
         this.parseObject(this.object);
-        model.EndFile();
+        model.EndFile(object);
         return model.getText().toString();
 
     }

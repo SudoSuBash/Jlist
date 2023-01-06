@@ -24,10 +24,11 @@ public class NSObjToPlistModel implements INSObjToPlist {
     }
 
     @Override
-    public void StartFile() {
+    public void StartFile(NSCollection rootType) {
         this.text.append("<plist>");
         this.text.append(PlistReader.SEPARATOR_LINE);
-        this.text.append("<dict>");
+        if(rootType instanceof NSDict) this.text.append("<dict>");
+        else if (rootType instanceof NSArray) this.text.append("<array>");
         text.append(PlistReader.SEPARATOR_LINE);
     }
 
@@ -80,8 +81,9 @@ public class NSObjToPlistModel implements INSObjToPlist {
     }
 
     @Override
-    public void EndFile() {
-        this.text.append("</dict>");
+    public void EndFile(NSCollection rootType) {
+        if(rootType instanceof NSDict) this.text.append("</dict>");
+        else if (rootType instanceof NSArray) this.text.append("</array>");
         this.text.append(PlistReader.SEPARATOR_LINE);
         this.text.append("</plist>");
     }

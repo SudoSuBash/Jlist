@@ -17,13 +17,13 @@
  * 2.Convert some SPECIAL JSON to Plist
  */
 
-package org.dragonstudio.JPlist;
+package studio.dragon.JPlist;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.dragonstudio.JPlist.DataType.*;
+import studio.dragon.JPlist.DataType.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -85,14 +85,14 @@ public class PlistReader {
     private static NSArray parseArray(NSArray array,Element arrayVal) throws PlistNotValidException {
         int length = arrayVal.elements().size();
         for(int cur=0;cur<length;cur++) {
-            parseNode(array,null,(Element) arrayVal.elements().get(cur));
+            parseNode(array,null, arrayVal.elements().get(cur));
         }
         return array;
     }
 
     private static void parseNode(NSCollection parent, String key, Element value) throws PlistNotValidException {
         if (value.getName().equalsIgnoreCase("integer")) {
-            if(value.getStringValue().contains(".")) throw new PlistNotValidException("Key");
+            if(value.getStringValue().contains(".")) throw new PlistNotValidException("The key:"+key+"'s value is not valid!");
             new NSInteger(key,Long.parseLong(value.getStringValue()),parent);
         }
         else if (value.getName().equalsIgnoreCase("string"))

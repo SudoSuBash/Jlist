@@ -5,9 +5,9 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
-import org.dragonstudio.JPlist.PlistNotValidException;
+import studio.dragon.JPlist.PlistNotValidException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

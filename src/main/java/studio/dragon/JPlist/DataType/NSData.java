@@ -12,9 +12,9 @@
  *
  * @author SYSTEM-QEMU-PPC
  */
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
-import org.dragonstudio.JPlist.PlistNotValidException;
+import studio.dragon.JPlist.PlistNotValidException;
 
 import java.util.Base64;
 
@@ -56,7 +56,8 @@ public class NSData extends NSObject<String> {
 
 
     private String DecodeString(String string) throws PlistNotValidException {
-        byte[] decoded = Base64.getDecoder().decode(string);
+        System.out.println(string.trim());
+        byte[] decoded = Base64.getMimeDecoder().decode(string);
 
         StringBuilder sb = new StringBuilder();
 

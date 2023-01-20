@@ -4,7 +4,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
 public class NSInteger extends NSObject<Long> {
     public NSInteger(String key, long value, NSCollection parent) {

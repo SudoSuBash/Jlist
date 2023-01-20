@@ -4,22 +4,30 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class NSDict extends NSObject<Map<Integer,NSObject>>
-    implements NSCollection,Cloneable,Iterable<NSObject> {
+    implements INSDict,Cloneable,Iterable<NSObject> {
+
+    /**
+     *
+     * @param key Parent Key(can be null)
+     * @param parent Parent Collection (Can be NSArray or NSDict)
+     */
     public NSDict(String key, NSCollection parent) {
         super("dict", key, parent);
         super.value = new HashMap<>();
     }
 
+
+    /**
+     * If you want to get a ROOT instance,plz use this constructor function.
+     */
     public NSDict() {
         this(null,null);
-        super.parentDict = this;
+        super.parent = this;
     }
 
     @Override
@@ -38,7 +46,25 @@ public class NSDict extends NSObject<Map<Integer,NSObject>>
         super.value.put(hashcode,object);
     }
 
+    @Override
+    public boolean contains(NSObject object) {
+        return super.value.containsValue(object);
+    }
 
+    @Override
+    public NSObject indexOf(int cur) {
+        Set<Integer> keys = super.value.keySet();
+        Integer[] keyArr = keys.toArray(new Integer[0]);
+        return super.value.get(keyArr[cur]);
+    }
+
+
+    @Override
+    public boolean containsKey(String key) {
+        return super.value.containsKey(key.hashCode());
+    }
+
+    @Override
     public void remove(int index) {
         super.value.remove(index);
     }
@@ -62,11 +88,6 @@ public class NSDict extends NSObject<Map<Integer,NSObject>>
 
             Integer[] key = value.keySet().toArray(new Integer[0]);
             return value.get(key[cur]);
-        }
-
-        @Override
-        public void remove() {
-            Iterator.super.remove();
         }
     }
 }

@@ -2,9 +2,9 @@
  * This class is used to convert the DOM Tree to the plist file.
  */
 
-package org.dragonstudio.JPlist;
+package studio.dragon.JPlist;
 
-import org.dragonstudio.JPlist.DataType.*;
+import studio.dragon.JPlist.DataType.*;
 
 public class NSObjToPlistModel implements INSObjToPlist {
 

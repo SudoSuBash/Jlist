@@ -1,7 +1,7 @@
-package org.dragonstudio.JPlist;
+package studio.dragon.JPlist;
 
-import org.dragonstudio.JPlist.DataType.NSCollection;
-import org.dragonstudio.JPlist.DataType.NSObject;
+import studio.dragon.JPlist.DataType.NSCollection;
+import studio.dragon.JPlist.DataType.NSObject;
 
 
 public interface INSObjToPlist {

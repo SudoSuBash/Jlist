@@ -1,16 +1,16 @@
 /**
- * The base class for all the NSType classes
+ * The base class for all the NSType classes.
  *
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
 import java.io.Serializable;
 
 public class NSObject<T>
     implements Serializable {
-    protected NSCollection parentDict;
+    protected NSCollection parent;
     protected String key;
     protected String type;
     protected T value;
@@ -19,12 +19,12 @@ public class NSObject<T>
         this.type = type;
         if(parent instanceof NSArray) this.key = null;
         else this.key = key;
-        this.parentDict = parent;
+        this.parent = parent;
         if(parent != null) parent.add(this);
     }
 
-    public NSCollection getParentDict() {
-        return parentDict;
+    public NSCollection getParent() {
+        return parent;
     }
 
     public String getKey() {

@@ -1,4 +1,4 @@
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
 public interface NSCollection extends Iterable<NSObject> {
     int size();
@@ -6,5 +6,9 @@ public interface NSCollection extends Iterable<NSObject> {
     boolean isEmpty();
 
     void add(NSObject object);
+
+    boolean contains(NSObject object);
+
+    NSObject indexOf(int cur);
 
 }

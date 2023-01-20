@@ -4,7 +4,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
 public class NSNumber extends NSObject<Double> {
     public NSNumber(String key, double value, NSCollection parent) {

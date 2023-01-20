@@ -4,7 +4,7 @@
  * @author SYSTEM-QEMU-PPC
  */
 
-package org.dragonstudio.JPlist.DataType;
+package studio.dragon.JPlist.DataType;
 
 public class NSString extends NSObject<String> {
 
